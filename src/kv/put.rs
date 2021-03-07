@@ -5,7 +5,7 @@ impl Database {
         let cur_file_id = self.current_data_file.get_id();
         let timestamp = crate::util::now_time();
 
-        let offset = self.current_data_file.write();
+        let offset = self.current_data_file.write(key,value,timestamp);
         self.keydir.set();
 
         if offset >= self.data_file_limit {

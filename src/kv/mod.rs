@@ -70,3 +70,9 @@ pub struct Stats {
     pub num_immutable_datafiles: u64,
     pub num_keys: u64,
 }
+
+impl Database {
+    pub fn switch_new_data_file(& mut self) -> ErrorResult<()> {
+
+    }
+}
