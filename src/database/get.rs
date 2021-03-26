@@ -2,6 +2,8 @@ use std::path::{Path,PathBuf};
 
 use crate::keydir::{KeyDirEntry, KeyDir};
 use crate::datafile::DataFile;
+use crate::ErrorResult;
+
 
 impl super::Database {
 

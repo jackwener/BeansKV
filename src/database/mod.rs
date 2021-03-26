@@ -1,9 +1,16 @@
 mod get;
 mod put;
 
+use lru::LruCache;
+
 use std::fs::create_dir_all;
+
 use crate::datafile::{DataFile,DataFileMetadata};
 use super::keydir::KeyDir;
+use crate::ErrorResult;
+use crate::error::Error;
+use string_error::new_err;
+
 
 #[derive(Clone, Debug)]
 pub struct Options {
@@ -30,9 +37,6 @@ pub struct Database {
 
 
 pub fn new(options: Options) -> ErrorResult<Database> {
-    // best effort:
-    let _ = env_logger::try_init();
-
     create_dir_all(&options.base_dir).map_err(|source| Error::CreateDatabaseDir {
         path: options.base_dir.to_path_buf(),
         source,
